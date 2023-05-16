@@ -1,29 +1,28 @@
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
-import Home from './components/pages/Home';
-import Company from './components/pages/Company';
-import Contact from './components/pages/Contact';
-import NewProject from './components/pages/NewProject';
-import Container from './components/layouts/Container';
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+import Home from './components/pages/Home'
+import Company from './components/pages/Company'
+import Contact from './components/pages/Contact'
+import NewProject from './components/pages/NewProject'
+import Container from './components/layouts/Container/Container'
+import NavBar from './components/layouts/NavBar/NavBar'
+import Footer from './components/layouts/Footer/Footer'
+import Projects from './components/pages/Projetcts'
+
 
 function App() {
   return (
     <Router>
-      <ul>
-        <Link to="/">Home</Link>
-        <Link to="/contact">Contato</Link>
-        <Link to="/company">Empresa</Link>
-        <Link to="/newproject">Novo Projeto</Link>
-      </ul>
+      <NavBar/>
       <Container customClass="min-height">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/Company" element={<Company />} />
-          <Route path="/Contact" element={<Contact />} />
-          <Route path="/NewProject" element={<NewProject />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/company" element={<Company />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/newProject" element={<NewProject />} />
         </Routes>
       </Container>
-      <p>Footer</p>
-
+      <Footer />
     </Router>
   );
 }
