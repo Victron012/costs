@@ -1,7 +1,7 @@
 {
   "projects": [
     {
-      "name": "TEste",
+      "name": "Teste",
       "budget": "123",
       "category": {
         "id": "2",
@@ -10,6 +10,28 @@
       "cost": 0,
       "services": [],
       "id": 1
+    },
+    {
+      "name": "Projeto de teste da mensagem",
+      "budget": "10000",
+      "category": {
+        "id": "3",
+        "name": "Desing"
+      },
+      "cost": 0,
+      "services": [],
+      "id": 2
+    },
+    {
+      "name": "Projeto de teste da mensagem 2",
+      "budget": "1231313",
+      "category": {
+        "id": "3",
+        "name": "Desing"
+      },
+      "cost": 0,
+      "services": [],
+      "id": 3
     }
   ],
   "categories": [
