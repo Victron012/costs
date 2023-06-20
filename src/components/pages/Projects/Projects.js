@@ -1,8 +1,8 @@
 import { useLocation } from "react-router-dom"
 import Message from "../../layouts/Message/Message"
-import styles from './Projetcts.module.css'
+import styles from './Projects.module.css'
 import Container from '../../layouts/Container/Container'
-import LinkButton from '../../../components/layouts/LinkButton/LinkButton'
+import LinkButton from '../../layouts/LinkButton/LinkButton'
 import ProjectCard from "../../projects/ProjectCard/ProjectCard"
 import { useState, useEffect } from "react"
 import Loading from "../../layouts/Loading/Loading"
