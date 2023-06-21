@@ -29,8 +29,51 @@
         "id": "3",
         "name": "Desing"
       },
-      "cost": 0,
-      "services": [],
+      "cost": 1937,
+      "services": [
+        {
+          "name": "Teste",
+          "cost": "112",
+          "description": "Teste",
+          "id": "e0bac199-6555-459f-81a7-a7e5839d8e85"
+        },
+        {
+          "name": "Teste",
+          "cost": "112",
+          "description": "Teste",
+          "id": "e0bac199-6555-459f-81a7-a7e5839d8e85"
+        },
+        {
+          "name": "Testantdo",
+          "cost": "122",
+          "description": "es ",
+          "id": "931dc75a-2500-4164-8c90-4251389faa27"
+        },
+        {
+          "name": "Testantdo",
+          "cost": "122",
+          "description": "es ",
+          "id": "931dc75a-2500-4164-8c90-4251389faa27"
+        },
+        {
+          "name": "Testantdo",
+          "cost": "122",
+          "description": "es ",
+          "id": "931dc75a-2500-4164-8c90-4251389faa27"
+        },
+        {
+          "name": " 1221",
+          "cost": "123",
+          "description": "es sf",
+          "id": "51160159-ec3b-448f-844c-3e1399c9b7a0"
+        },
+        {
+          "name": "Opa",
+          "cost": "1224",
+          "description": "sads",
+          "id": "31a92928-ab64-4006-8da2-4b9c7a7f1a9f"
+        }
+      ],
       "id": 3
     }
   ],

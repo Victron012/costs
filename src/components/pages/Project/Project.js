@@ -7,6 +7,7 @@ import ProjectForm from '../../projects/ProjectForm/ProjectForm'
 import Message from '../../layouts/Message/Message'
 import ServiceForm from '../../services/ServiceForm/ServiceForm'
 import {parse, v4 as uuidv4} from 'uuid'
+import ServiceCard from '../../services/ServiceCard/ServiceCard'
 
 function Project() {
     const { id } = useParams()
@@ -64,8 +65,11 @@ function Project() {
             body: JSON.stringify(project)
         }).then((resp)=>resp.json())
         .then((data)=>{
-            //exibir os servicos
-            console.log(data)
+            setMessage("Serviço cadastrado com sucesso!")
+            setMessageType("success")
+            setProject(data)
+            setServices(data.services)
+            setShowServiceForm(false)
         })
         .catch(err=>console.log(err))
 
@@ -147,8 +151,19 @@ function Project() {
                     </div>
                     <h2>Serviços</h2>
                     <Container customClass="start">
-                        {services.lenght > 0 }
-                        {services.length == 0 && <p>Não há serviços cadastrados.</p>}
+                        {services.length > 0 &&
+                            services.map((service)=>(
+                                <ServiceCard 
+                                    id={service.id}
+                                    name={service.name}
+                                    cost={service.cost}
+                                    description={service.description}
+                                    key={service.id}
+                                    handleRemove={removeService}
+                                />
+                            ))
+                        }
+                        {services.length === 0 && <p>Não há serviços cadastrados.</p>}
                     </Container>
                 </Container>
             </div>
