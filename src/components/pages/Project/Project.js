@@ -5,10 +5,13 @@ import Loading from '../../layouts/Loading/Loading'
 import Container from '../../layouts/Container/Container'
 import ProjectForm from '../../projects/ProjectForm/ProjectForm'
 import Message from '../../layouts/Message/Message'
+import ServiceForm from '../../services/ServiceForm/ServiceForm'
+import {parse, v4 as uuidv4} from 'uuid'
 
 function Project() {
     const { id } = useParams()
     const [project, setProject] = useState([])
+    const [services, setServices] = useState([])
     const [showProjectForm, setShowProjectForm] = useState(false)
     const [showServiceForm, setShowServiceForm] = useState(false)
     const [message, setMessage] = useState()
@@ -24,6 +27,7 @@ function Project() {
             }).then(resp => resp.json())
                 .then((data) => {
                     setProject(data)
+                    setServices(data.services)
                 })
         }, 500)
     }, [id])
@@ -34,6 +38,37 @@ function Project() {
 
     function toggleServiceForm() {
         setShowServiceForm(!showServiceForm)
+    }
+
+    function createService(project){
+        setMessage()
+        const lastService = project.services[project.services.length - 1]
+        lastService.id = uuidv4()
+        const lastServiceCost = lastService.cost
+        const newCost = parseFloat(project.cost) + parseFloat(lastServiceCost)
+
+        if(newCost>parseFloat(project.budget)){
+            setMessage("Orçamento ultrapassado, verifique o valor do serviço")
+            setMessageType('error')
+            project.services.pop()
+            return false
+        }
+
+        project.cost = newCost
+
+        fetch(`http://localhost:5000/projects/${project.id}`,{
+            method: 'PATCH',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify(project)
+        }).then((resp)=>resp.json())
+        .then((data)=>{
+            //exibir os servicos
+            console.log(data)
+        })
+        .catch(err=>console.log(err))
+
     }
 
     function editPost(project){
@@ -61,6 +96,10 @@ function Project() {
         .catch(err => console.log(err))
 
         setMessage()
+    }
+
+    function removeService(){
+
     }
 
     return (<>
@@ -97,12 +136,19 @@ function Project() {
                         <h2>Adicione um serviço:</h2>
                         <button className={styles.btn} onClick={toggleServiceForm}>{!showServiceForm ? 'Adicionar serviço' : 'Fechar'}</button>
                         <div className={styles.project_info}>
-                            {showServiceForm && <div>Formulario do servico</div>}
+                            {showServiceForm && (
+                                <ServiceForm
+                                    handleSubmit={createService}
+                                    btnText="Adicionar Serviço"
+                                    projectData={project}
+                                />
+                            )}
                         </div>
                     </div>
                     <h2>Serviços</h2>
                     <Container customClass="start">
-                            <p>Itens de serviços</p>
+                        {services.lenght > 0 }
+                        {services.length == 0 && <p>Não há serviços cadastrados.</p>}
                     </Container>
                 </Container>
             </div>
